@@ -8,34 +8,48 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   </head>
   <body class="p-5">
-    <h1>Detalhes</h1>
+
+  <div class="container mt-5">
+  
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                      <h4>Detalhes
+                      <a href="/usuarios" class="btn btn-danger float-end">Voltar</a>
+                      </h4>
+                    </div>
+                    <div class="card-body">
                                     
-    <div class="mb-3">
-    <label>ID</label>
-    <p class="form-control">{{ $usuarios->id }}</p>
-    </div>
+                      <div class="mb-3">
+                      <label>ID</label>
+                      <p class="form-control">{{ $usuarios->id }}</p>
+                      </div>
    
-    <div class="mb-3">
-    <label>Nome</label>
-    <p class="form-control">{{ $usuarios->nome }}</p>
-    </div>
+                      <div class="mb-3">
+                      <label>Nome</label>
+                      <p class="form-control">{{ $usuarios->nome }}</p>
+                      </div>
 
-    <div class="mb-3">
-    <label>E-mail</label>
-    <p class="form-control">{{ $usuarios->email }}</p>
-    </div>
+                      <div class="mb-3">
+                      <label>E-mail</label>
+                      <p class="form-control">{{ $usuarios->email }}</p>
+                      </div>
 
-    <div class="mb-3">
-    <label>Idade</label>
-    <p class="form-control">{{ $usuarios->idade }}</p>
-    </div>
+                      <div class="mb-3">
+                      <label>Idade</label>
+                      <p class="form-control">{{ $usuarios->idade }}</p>
+                      </div>
 
-    <div class="mb-3">
-    <label>Telefone</label>
-    <p class="form-control">{{ $usuarios->telefone }}</p>
-    </div>
-
-    <p><a href="/usuarios" class="btn btn-success">Voltar</a></p>
+                      <div class="mb-3">
+                      <label>Telefone</label>
+                      <p class="form-control">{{ $usuarios->telefone }}</p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </body>
 </html>
 
