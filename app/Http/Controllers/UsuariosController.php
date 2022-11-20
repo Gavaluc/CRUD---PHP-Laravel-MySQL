@@ -84,7 +84,7 @@ class UsuariosController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'nome'     => 'required|min:3',
+            'nome'     => 'required|min:3|max:128',
             'email'    => 'email|unique:usuarios,email,' .$usuario->id,
             'idade'    => 'required:min:3',
             'telefone' => 'required'
