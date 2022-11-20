@@ -17,7 +17,7 @@ class UsuariosController extends Controller
     public function index()
     {
         $data['usuarios'] = DB::table('usuarios')->select('id', 'nome', 'email', 'idade', 'telefone')->get();
-        return view('listar', $data); 
+        return view('listar', $data);
     }
 
 
@@ -84,7 +84,7 @@ class UsuariosController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'nome'     => 'required|min:3',
+            'nome'     => 'required|min:3|max:128',
             'email'    => 'email|unique:usuarios,email,' .$usuario->id,
             'idade'    => 'required',
             'telefone' => 'required'

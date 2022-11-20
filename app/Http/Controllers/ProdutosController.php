@@ -87,7 +87,7 @@ class ProdutosController extends Controller
     public function update(Request $request, $id)
     {
         $validation = Validator::make($request->all(), [
-            'descricao'  => 'required|min:3|max:128',
+            'descricao'  => 'required|min:12|max:128',
             'preco'      => 'required|numeric|min:0',
             'quantidade' => 'required|numeric|min:0'
         ]);
