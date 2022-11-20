@@ -20,6 +20,13 @@ class UsuariosController extends Controller
         return view('listar', $data); 
     }
 
+
+    public function create()
+    {
+        return view('novo');
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -28,25 +35,18 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = Validator::make($request->all(), [
-            'name'     => 'required|min:3',
-            'email'    => 'email|unique:users',
-            'password' => 'required',
-        ]);
-
-        if ($validated->fails()) {
-            return response()->json(['mensagem' => 'Problemas encontrados.'], 422);
-        } else {
-            $data = [
-                'name' => $request->name,
+       {
+            DB::table('usuarios')->insert([
+                'nome' => $request->nome,
                 'email' => $request->email,
-                'password' => $request->password
-            ];
-
-            Usuario::create($data);
-            return response()->json(['mensagem' => 'Usuário cadastrado.'], 201);
+                'idade' => $request->idade,
+                'telefone' =>$request->telefone
+            ]);
+            return redirect('/usuarios')->with('mensagem', 'Usuário cadastrado!');
         }
+
     }
+
 
     /**
      * Display the specified resource.
@@ -63,6 +63,13 @@ class UsuariosController extends Controller
         return view('detalhes', $data);
     }
 
+    public function edit($id)
+    {
+        $usuario = DB::table('usuarios')->where('id', $id)->first();
+        return view('editar', ['usuario' => $usuario]);
+    }
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -72,27 +79,29 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (! $usuario = DB::table('users')->where('id', $id)->first()) {
+        if (! $usuario = DB::table('usuarios')->where('id', $id)->first()) {
             return response()->json(['mensagem' => 'Usuário não encontrado'], 404);
         }
 
-        $validated = Validator::make($request->all(), [
-            'name'     => 'required|min:3',
-            'email'    => 'email',
-            'password' => 'required',
+        $validator = Validator::make($request->all(), [
+            'nome'     => 'required|min:3',
+            'email'    => 'email|unique:usuarios,email,' .$usuario->id,
+            'idade'    => 'required',
+            'telefone' => 'required'
         ]);
 
-        if ($validated->fails()) {
+        if ($validator->fails()) {
             return response()->json(['mensagem' => 'Problemas encontrados.'], 422);
         } else {
             $data = [
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => $request->password
+                'nome'     => $request->nome,
+                'email'    => $request->email,
+                'idade'    => $request->idade,
+                'telefone' => $request->telefone
             ];
 
-            DB::table('users')->where('id', $id)->update($data);
-            return response()->json(['mensagem' => 'Usuário alterado.'], 200);
+            DB::table('usuarios')->where('id', $id)->update($data);
+            return redirect('/usuarios')->with('mensagem', 'Usuário alterado!');
         }
     }
 
@@ -104,11 +113,11 @@ class UsuariosController extends Controller
      */
     public function destroy($id)
     {
-        if (! $usuario = DB::table('users')->where('id', $id)->first()) {
+        if (! $usuario = DB::table('usuarios')->where('id', $id)->first()) {
             return response()->json(['mensagem' => 'Usuário não encontrado'], 404);
         }
 
-        DB::table('users')->where('id', $id)->delete();
-        return response()->json(['mensagem' => 'Usuário excluído.'], 200);
+        DB::table('usuarios')->where('id', $id)->delete();
+        return redirect('/usuarios')->with('mensagem', 'Usuário excluído!');
     }
 }

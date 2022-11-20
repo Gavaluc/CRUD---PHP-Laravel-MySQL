@@ -9,11 +9,33 @@
   </head>
   <body class="p-5">
     <h1>Detalhes</h1>
-    <p>ID: {{ $usuarios->id }}</p>
-    <p>Nome: {{ $usuarios->nome }}</p>
-    <p>E-mail: {{ $usuarios->email }}</p>
-    <p>Idade: {{ $usuarios->idade }}</p>
-    <p>Telefone: {{ $usuarios->telefone }}</p>
+                                    
+    <div class="mb-3">
+    <label>ID</label>
+    <p class="form-control">{{ $usuarios->id }}</p>
+    </div>
+   
+    <div class="mb-3">
+    <label>Nome</label>
+    <p class="form-control">{{ $usuarios->nome }}</p>
+    </div>
+
+    <div class="mb-3">
+    <label>E-mail</label>
+    <p class="form-control">{{ $usuarios->email }}</p>
+    </div>
+
+    <div class="mb-3">
+    <label>Idade</label>
+    <p class="form-control">{{ $usuarios->idade }}</p>
+    </div>
+
+    <div class="mb-3">
+    <label>Telefone</label>
+    <p class="form-control">{{ $usuarios->telefone }}</p>
+    </div>
+
     <p><a href="/usuarios" class="btn btn-success">Voltar</a></p>
   </body>
 </html>
+
