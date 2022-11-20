@@ -13,7 +13,7 @@ class HomeController extends Controller
         $informacao = null;
 
         return view('home', [
-            'nome' => $nome, 
+            'nome' => $nome,
             'idade' => $idade,
             'informacao' => $informacao
         ]);
@@ -23,9 +23,10 @@ class HomeController extends Controller
         $users = [
             ['nome' => 'José da Silva', 'idade' => 68, 'cidade' => 'Maringá'],
             ['nome' => 'Ana Clara', 'idade' => 26, 'cidade' => 'Londrina'],
-            ['nome' => 'Maria Soares', 'idade' => 55, 'cidade' => 'Curitiba']
+            ['nome' => 'Maria Soares', 'idade' => 55, 'cidade' => 'Curitiba'],
+            ['nome' => 'Julia Santos Pinheiro', 'idade' => 8, 'cidade' => 'Arapoti']
         ];
-        
+
         return view('users', ['users' => $users]);
     }
 
